@@ -1,0 +1,1 @@
+docker run -i -t --privileged -v /dev/bus/usb:/dev/bus/usb blobb/androidfarm:adbWorks
