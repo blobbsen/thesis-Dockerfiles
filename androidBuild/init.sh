@@ -17,7 +17,7 @@ docker run --rm \
     \
     -v ${ANDROID_HOME}:/home/androidbuild/android-sdk \
     \
-    dockertestbuild $INVOCATION
+    androidbuild $INVOCATION
     # androidbuild
 
 #swarm variante

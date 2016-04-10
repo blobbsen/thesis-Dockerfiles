@@ -1,13 +1,10 @@
 #!/bin/bash
 
-# example SLAVE_ARGS="slave.jar -jnlpUrl http://172.17.42.1:8190/computer/androidbuild/slave-agent.jnlp"
-#SLAVE_ARGS=$1
-SLAVE_ARGS=""
-# -noReconnect gives the possibility to kill Docker slaves within Jenkins by disconnecting the slave instance.
+# e.g. http://localhost:8080
+ADDRESS_MASTER=$1
 
-MASTER=$1
-if [ "$2" == "swarm" ]; then
-  INVOCATION="docker run -i -t -v `pwd`/ssh/:/home/gitslave/.ssh gitslave02 java -jar swarmSlave.jar -noRetryAfterConnected -master http://172.17.42.1:8190 -executors 1 -fsroot /home/gitslave/ -labels git -mode exclusive -name git"
+if [ "$1" == "swarm" ]; then
+  INVOCATION="java -jar swarmSlave.jar -noRetryAfterConnected -master http://172.17.42.1:8190 -executors 4 -fsroot /home/gitslave/ -labels git -mode exclusive -name git"
 else
   INVOCATION="java -jar slave.jar -noReconnect -jnlpUrl http://172.17.42.1:8190/computer/androidbuild/slave-agent.jnlp"
 fi

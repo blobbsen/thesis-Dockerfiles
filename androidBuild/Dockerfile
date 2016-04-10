@@ -9,6 +9,8 @@ RUN apt-get -y update &&\
     tar \
     ant \
     gradle \
+    lib32stdc++6 \
+    lib32z1 \
     && \
     apt-get clean && \
     rm -rf /var/cache/apt/*
@@ -21,8 +23,7 @@ COPY swarmSlave.jar  /home/androidbuild/swarmSlave.jar
 
 VOLUME /home/androidbuild/android-sdk
 ENV ANDROID_HOME /home/androidbuild/android-sdk
-
-RUN echo "PATH=$PATH:$ANDROID_HOME/platform-tools:$ANDROID_HOME/tools" >> /home/androidbuild/.bashrc
+ENV PATH /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/home/androidbuild/android-sdk/platform-tools:/home/androidbuild/android-sdk/tools
 
 USER androidbuild
 WORKDIR /home/androidbuild/

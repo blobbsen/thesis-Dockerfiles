@@ -1,3 +1,6 @@
+CID="jenkins_docker"
+
+docker rm $CID
 docker run --rm \
 	\
 	-p 8190:8080 \
@@ -7,6 +10,6 @@ docker run --rm \
 	-v `pwd`/jenkins_home:/var/lib/jenkins \
 	-v `pwd`/etc_ssh:/etc/ssh \
 	\
-	--name "jenkins_docker" \
+	--name $CID \
 	\
 	jenkins_final01
